@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Make everything smaller on mobile */
+@layer base {
+  @screen max-sm {
+    html {
+      font-size: 90%;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* Prevent vertical scrolling outside main content */
+#root, .min-h-screen {
+  min-height: 100vh;  /* full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure main content grows but not beyond screen */
+main {
+  flex-grow: 1; /* takes all available space between header and footer */
+  overflow-y: auto; /* allow scrolling inside main if needed */
+}
+
+/* Optional: prevent body from scrolling */
+body {
+  overflow-y: hidden; /* disables scrolling for entire body */
+}

@@ -1,0 +1,42 @@
+.particles {
+  overflow: hidden;
+  filter: url('#goo');
+}
+
+@-moz-document url-prefix() {
+  .particles {
+    filter: none;
+  }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(180px); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-180px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(280px); }
+}
+
+@keyframes floatReverse2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-280px); }
+}
+
+/* Generate 200 particle animation classes */
+.particle:nth-child(4n+1) { animation: float var(--duration) var(--delay) infinite forwards; }
+.particle:nth-child(4n+2) { animation: floatReverse var(--duration) var(--delay) infinite forwards; }
+.particle:nth-child(4n+3) { animation: float2 var(--duration) var(--delay) infinite forwards; }
+.particle:nth-child(4n+4) { animation: floatReverse2 var(--duration) var(--delay) infinite forwards; }
