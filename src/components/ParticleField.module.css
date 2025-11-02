@@ -1,0 +1,38 @@
+.container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: #FFF;
+}
+
+.particle {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 15vmin;
+  height: 15vmin;
+  border-radius: 50%;
+  box-shadow: 
+    0 3vmin 3vmin rgba(0,0,0,.3),
+    0 -6vmin 3vmin rgba(0,0,0,.1) inset,
+    0 9vmin 3vmin rgba(255,255,255,.1) inset;
+  opacity: 0;
+  animation: doit 2500ms infinite cubic-bezier(0.125, 0, 0.410, 0);
+  animation-direction: reverse;
+}
+
+@keyframes doit {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  100% { 
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(.1);
+  }
+}

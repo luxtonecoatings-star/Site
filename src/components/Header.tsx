@@ -4,7 +4,6 @@ import { Menu, X, Paintbrush } from 'lucide-react';
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,18 +25,17 @@ function Header() {
     try {
       window.location.hash = `#${href}`;
     } catch (e) {
-      // fallback to local state if setting the hash fails for some reason
-      setCurrentPage(href);
+      console.error('Failed to update URL hash:', e);
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-gradient-to-b from-black/20 to-transparent py-5'
+          : 'bg-black/10 backdrop-blur-sm py-5'
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,15 +54,15 @@ function Header() {
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
-                  currentPage === link.href
-                    ? isScrolled
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white text-blue-600'
-                    : isScrolled
-                    ? 'text-gray-700 hover:bg-gray-100'
-                    : 'text-white hover:bg-white/20'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium bg-white ${
+                  link.href === 'home'
+                    ? 'text-blue-600'
+                    : link.href === 'about'
+                    ? 'text-gray-900'
+                    : link.href === 'services'
+                    ? 'text-red-600'
+                    : 'text-orange-600'
+                } hover:bg-white/90`}
               >
                 {link.name}
               </button>
@@ -87,11 +85,15 @@ function Header() {
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                  currentPage === link.href
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`block w-full text-left px-4 py-3 rounded-lg transition-colors bg-white ${
+                  link.href === 'home'
+                    ? 'text-blue-600'
+                    : link.href === 'about'
+                    ? 'text-gray-900'
+                    : link.href === 'services'
+                    ? 'text-red-600'
+                    : 'text-orange-600'
+                } hover:bg-white/90`}
               >
                 {link.name}
               </button>

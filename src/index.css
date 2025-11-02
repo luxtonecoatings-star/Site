@@ -10,11 +10,11 @@ html, body {
   height: 100%;
 }
 
-/* Make everything smaller on mobile */
+/* Make everything smaller on mobile (screens < 640px) */
 @layer base {
-  @screen max-sm {
+  @media (max-width: 639px) {
     html {
-      font-size: 90%;
+      font-size: 90%; /* scales down everything */
     }
 
     body {
@@ -40,9 +40,11 @@ html, body {
 main {
   flex-grow: 1; /* takes all available space between header and footer */
   overflow-y: auto; /* allow scrolling inside main if needed */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
 }
 
 /* Optional: prevent body from scrolling */
+/* Enable body vertical scrolling so pages can scroll on mobile */
 body {
-  overflow-y: hidden; /* disables scrolling for entire body */
+  overflow-y: auto;
 }

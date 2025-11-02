@@ -1,19 +1,17 @@
-import { GooFilter } from '../components/GooFilter';
-import { ParticlesBackground } from '../components/ParticlesBackground';
+import PaintAnimation from '../components/PaintAnimation';
 
 function About() {
   return (
-    <div className="pt-20 min-h-screen overflow-hidden">
-      <GooFilter />
-      <ParticlesBackground />
+    <div className="backdrop-blur-md bg-white/30 pt-10 min-h-screen bg-blurred-white/30 relative overflow-hidden">
+      <PaintAnimation />
       <section className="relative py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 text-center">
+            <h1 className="bg-white/70 text-5xl md:text-6xl font-bold text-gray-900 mb-8 text-center">
               About Luxtone coating
             </h1>
 
-            <div className="bg-blue-500 bg-opacity-30 shadow-xl p-8 md:p-12">
+            <div className="bg-white/50 rounded-2xl shadow-xl p-8 md:p-12">
               <p className="text-lg text-gray-800 leading-relaxed mb-6">
                 Luxtone coating has been transforming spaces and exceeding expectations for over 15 years. Founded on the principles of quality craftsmanship, integrity, and customer satisfaction, we have grown from a small local operation to one of the most trusted painting service providers in the region. Our team of certified professionals brings decades of combined experience, ensuring every project receives the attention to detail it deserves.
               </p>
