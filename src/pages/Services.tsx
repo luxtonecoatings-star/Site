@@ -8,7 +8,7 @@ export default function Services() {
   useInView(heroRef, { threshold: 0.2, once: true });
 
   return (
-    <main className="bg-brand-dark text-white">
+    <main className="bg-brand-dark text-white flex-grow scale-[1] sm:scale-100 origin-top">
       {/* Hero */}
       <section className="py-24 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent border-b border-gold/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

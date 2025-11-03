@@ -31,7 +31,7 @@ function WhyChooseUs() {
   ];
 
   return (
-    <div className="w-full">
+    <main className="flex-grow scale-[1] sm:scale-100 origin-top">
       {sections.map((s, i) => {
         // use refs per-section via closures (safe since refs are stable within each render)
         const imgRef = useRef<HTMLDivElement | null>(null);
@@ -99,7 +99,7 @@ function WhyChooseUs() {
           </section>
         );
       })}
-    </div>
+    </main>
   );
 }
 
