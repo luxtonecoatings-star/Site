@@ -97,16 +97,7 @@ export const services: Service[] = [
     description: "Preserve and beautify wooden surfaces with our expert staining services.",
     image: "https://images.pexels.com/photos/5691622/pexels-photo-5691622.jpeg?auto=compress&cs=tinysrgb&w=800",
     points: [
-      "Premium wood stains and sealers",
-      "Natural wood grain enhancement",
-      "Protection against moisture and UV damage",
-      "Deck and fence staining services",
-      "Interior woodwork finishing",
-      "Color matching to existing wood",
-      "Multiple finish options: matte, satin, gloss",
-      "Wood restoration and refinishing",
-      "Eco-friendly and non-toxic products",
-      "Long-lasting protective coatings"
+
     ]
   }
 ];

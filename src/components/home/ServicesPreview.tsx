@@ -1,61 +1,94 @@
-import { Paintbrush, Home, Building, Wallpaper } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useRef, useEffect } from 'react';
 
 function ServicesPreview() {
-  const services = [
+  const steps = [
     {
-      icon: Home,
-      title: 'Interior Painting',
-      description: 'Transform your indoor spaces with vibrant colors and flawless finishes'
+      title: 'Browse our portfolio',
+      desc: 'Explore finished projects and color ideas to find the right style for your space.',
+      img: 'https://images.pexels.com/photos/321576/pexels-photo-321576.jpeg?auto=compress&cs=tinysrgb&w=1200'
     },
     {
-      icon: Building,
-      title: 'Exterior Painting',
-      description: 'Weather-resistant coatings that protect and beautify your property'
+      title: 'Request a tailored quote',
+      desc: 'Send a few details and we’ll propose a transparent, no-surprise estimate.',
+      img: 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=1200'
     },
     {
-      icon: Paintbrush,
-      title: 'Commercial Services',
-      description: 'Professional solutions for offices and commercial spaces'
+      title: 'Schedule with confidence',
+      desc: 'We work around your schedule and protect your home while we work.',
+      img: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200'
     },
     {
-      icon: Wallpaper,
-      title: 'Specialty Finishes',
-      description: 'Unique textures and decorative techniques for distinctive looks'
+      title: 'Enjoy the finish',
+      desc: 'Final walkthrough, warranty overview, and follow-up care to keep your space looking great.',
+      img: 'https://images.pexels.com/photos/210433/pexels-photo-210433.jpeg?auto=compress&cs=tinysrgb&w=1200'
     }
   ];
+  // refs for text blocks so we can animate them when they enter viewport
+  const textRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const els = textRefs.current.filter(Boolean) as Element[];
+    if (!els.length) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Services
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive painting solutions tailored to your needs
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+    <div className="w-full">
+      {steps.map((s, i) => {
+        const isLeft = i % 2 === 0;
+        return (
+          <section key={i} className="h-screen w-full relative flex items-center">
+            {/* Background image */}
             <div
-              key={index}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-            >
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <service.icon className="w-8 h-8 text-white" />
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${s.img})` }}
+              aria-hidden="true"
+            />
+
+            {/* Dark overlay for contrast */}
+            <div className="absolute inset-0 bg-black/45" />
+
+            {/* Decorative light gradient */}
+            <div className={`absolute inset-0 pointer-events-none ${isLeft ? 'bg-gradient-to-r from-black/40 to-transparent' : 'bg-gradient-to-l from-black/40 to-transparent'}`} />
+
+            {/* Content */}
+            <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12">
+              <div
+                ref={(el) => (textRefs.current[i] = el)}
+                className="glide-up"
+              >
+              <div className={`max-w-3xl ${isLeft ? 'ml-0 md:ml-0 lg:ml-0' : 'ml-auto md:ml-auto lg:ml-auto'} `}>
+                <div className={`text-white ${isLeft ? 'text-left' : 'text-right'}`}>
+                  <div className="text-6xl md:text-7xl lg:text-8xl font-heading font-bold leading-tight mb-6">{s.title}</div>
+                  <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 max-w-2xl">{s.desc}</p>
+                  <div className={`${isLeft ? 'flex gap-6 justify-start' : 'flex gap-6 justify-end'}`}>
+                    <a href="#contact" className="inline-flex items-center gap-3 bg-gold hover:bg-[#b8902a] text-brand-dark px-6 py-3 rounded-lg font-semibold shadow-lg">
+                      Get a free quote
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {service.description}
-              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </div>
+          </section>
+        );
+      })}
+    </div>
   );
 }
 
