@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    image: 'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: 're.jpg',
     title: 'Royal Elegance',
     subtitle: 'Where luxury meets craftsmanship in every brushstroke',
     accent: 'Elevate Your Space'
@@ -15,7 +15,7 @@ const slides = [
     accent: 'Timeless Beauty'
   },
   {
-    image: 'https://images.pexels.com/photos/1669799/pexels-photo-1669799.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: 'll.jpg',
     title: 'Luxurious Vision',
     subtitle: 'Creating distinguished environments with unparalleled quality',
     accent: 'Exquisite Detail'
@@ -103,22 +103,6 @@ function HeroCarousel() {
           </div>
         </div>
       ))}
-
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-gold/20 
-                text-gold p-4 rounded-full transition-all duration-300 hover:scale-110 group"
-      >
-        <ChevronLeft className="w-6 h-6 group-hover:text-gold/80" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-gold/20 
-                text-gold p-4 rounded-full transition-all duration-300 hover:scale-110 group"
-      >
-        <ChevronRight className="w-6 h-6 group-hover:text-gold/80" />
-      </button>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-4 bg-black/20 backdrop-blur-sm px-6 py-3 rounded-full border border-gold/10">
