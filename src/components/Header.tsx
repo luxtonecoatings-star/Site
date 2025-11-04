@@ -6,9 +6,23 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      // Use a larger threshold for better mobile detection
+      const scrollThreshold = window.innerWidth < 640 ? 10 : 20;
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+    
+    // Initial check
+    handleScroll();
+    
+    // Add listener
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('touchmove', handleScroll, { passive: true }); // Add touch event listener
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+    };
   }, []);
 
   // Disable body scroll when menu is open
@@ -48,7 +62,7 @@ function Header() {
     <>
       <header
         className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-black/70 backdrop-blur-md shadow-md py-6' : 'bg-transparent py-12'
+          isScrolled ? 'bg-black/70 backdrop-blur-md shadow-md py-4 sm:py-6' : 'bg-transparent py-6 sm:py-12'
         }`}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
