@@ -7,21 +7,33 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use a larger threshold for better mobile detection
-      const scrollThreshold = window.innerWidth < 640 ? 10 : 20;
-      setIsScrolled(window.scrollY > scrollThreshold);
+      if (typeof window !== 'undefined') {
+        const isMobile = window.innerWidth < 640;
+        const scrolled = window.scrollY > (isMobile ? 5 : 20);
+        
+        // Add a small delay for mobile to ensure smooth transition
+        if (isMobile) {
+          requestAnimationFrame(() => {
+            setIsScrolled(scrolled);
+          });
+        } else {
+          setIsScrolled(scrolled);
+        }
+      }
     };
-    
-    // Initial check
+
+    // Set initial state
     handleScroll();
+
+    // Handle scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Add listener
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('touchmove', handleScroll, { passive: true }); // Add touch event listener
-    
+    // Handle resize events to update mobile detection
+    window.addEventListener('resize', handleScroll, { passive: true });
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('touchmove', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -61,8 +73,10 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-black/70 backdrop-blur-md shadow-md py-4 sm:py-6' : 'bg-transparent py-6 sm:py-12'
+        className={`fixed w-full top-0 z-50 transition-colors duration-200 ease-in-out ${
+          isScrolled 
+            ? 'bg-black/80 backdrop-blur-md shadow-md py-4 sm:py-6' 
+            : 'bg-gradient-to-b from-black/50 to-transparent sm:bg-transparent py-6 sm:py-12'
         }`}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
