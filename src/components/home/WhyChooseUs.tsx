@@ -5,35 +5,37 @@ import { useInView } from '../../lib/useInView';
 function WhyChooseUs() {
   const sections = [
     {
-      title: 'Expert Craftsmanship',
-      text: 'Our craftsmen combine decades of experience with attention to detail to deliver immaculate finishes that last.',
+      title: 'Premium Materials & Craftsmanship',
+      text: 'We source the finest raw materials and apply strict process controls to ensure every finish delivers on durability and visual excellence.',
       image:
-        'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        '/ww.jpeg'
     },
     {
-      title: 'Premium Materials & Colors',
-      text: 'We use premium paints and coatings to ensure vibrant, durable color that resists fading and wear.',
+      title: 'Innovative Solutions',
+      text: 'Whether it’s a bespoke finish for a luxury boutique or an extreme-duty lining for an industrial plant, our R&D-driven approach ensures we stay ahead of evolving needs.',
       image:
-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        '/w1.jpeg',
+  // optional background class applied only to this section
+  bg: 'black',
+        
     },
     {
-      title: 'Professional Process',
-      text: 'Detailed prep, protective measures, and efficient scheduling minimize disruption and speed delivery.',
+      title: 'End-to-End Delivery',
+      text: 'From concept and sampling to full-scale application and after-care, we deliver seamless service so you can focus on your core business while we handle every detail.',
       image:
-        'https://images.pexels.com/photos/1669799/pexels-photo-1669799.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        'w2.jpeg'
     },
     {
-      title: 'Service & Warranty',
-      text: 'We stand behind our work with responsive customer care and solid warranty options to protect your investment.',
+      title: 'Sustainability Focus',
+      text: 'Our formulations and practices reflect a commitment to environmentally responsible coatings and healthier interior spaces.',
       image:
-        'https://images.pexels.com/photos/5691622/pexels-photo-5691622.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        '/w4.jpeg'
     }
   ];
 
   return (
     <main className="flex-grow scale-[1] sm:scale-100 origin-top">
       {sections.map((s, i) => {
-        // use refs per-section via closures (safe since refs are stable within each render)
         const imgRef = useRef<HTMLDivElement | null>(null);
         const textRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,9 +43,8 @@ function WhyChooseUs() {
         useInView(imgRef, { threshold: 0.2, once: true });
 
         return (
-          <section key={i} className="h-screen w-full">
+          <section key={i} className={`h-screen w-full ${s.bg ?? ''}`}>
             <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-              {/* Conditionally render image first or text first */}
               {i % 2 === 0 ? (
                 <>
                   {/* Image Left */}
@@ -54,7 +55,7 @@ function WhyChooseUs() {
                     aria-hidden="true"
                   />
                   {/* Text Right */}
-                  <div className="h-full flex items-center bg-white px-6 md:px-12 lg:px-20">
+                  <div className={`h-full flex items-center ${s.bg ?? 'bg-gold/20'} px-6 md:px-12 lg:px-20`}>
                     <div ref={textRef} className="max-w-2xl glide-up">
                       <span className="text-gold font-semibold uppercase tracking-wide mb-2 block">Why Luxtone</span>
                       <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-dark mb-4">{s.title}</h2>
@@ -72,7 +73,7 @@ function WhyChooseUs() {
               ) : (
                 <>
                   {/* Text Left */}
-                  <div className="h-full flex items-center bg-white px-6 md:px-12 lg:px-20">
+                  <div className={`h-full flex items-center ${s.bg ?? 'bg-white'} px-6 md:px-12 lg:px-20`}>
                     <div ref={textRef} className="max-w-2xl glide-up">
                       <span className="text-gold font-semibold uppercase tracking-wide mb-2 block">Why Luxtone</span>
                       <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-dark mb-4">{s.title}</h2>

@@ -6,22 +6,22 @@ function ServicesPreview() {
     {
       title: 'Browse our portfolio',
       desc: 'Explore finished projects and color ideas to find the right style for your space.',
-      img: 'https://images.pexels.com/photos/321576/pexels-photo-321576.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      img: '/s1.jpeg'
     },
     {
       title: 'Request a tailored quote',
       desc: 'Send a few details and we’ll propose a transparent, no-surprise estimate.',
-      img: 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      img: '/s2.jpeg'
     },
     {
       title: 'Schedule with confidence',
       desc: 'We work around your schedule and protect your home while we work.',
-      img: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      img: '/s3.jpeg'
     },
     {
       title: 'Enjoy the finish',
       desc: 'Final walkthrough, warranty overview, and follow-up care to keep your space looking great.',
-      img: 'https://images.pexels.com/photos/210433/pexels-photo-210433.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      img: '/s4.jpeg'
     }
   ];
   // refs for text blocks so we can animate them when they enter viewport
