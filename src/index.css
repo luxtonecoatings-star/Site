@@ -165,3 +165,32 @@ body {
   opacity: 1;
   transform: translate(0, 0) scale(1);
 }
+
+
+/* Fix: prevent horizontal scrolling on mobile and ensure background/images don't overflow */
+@layer base {
+  @media (max-width: 639px) {
+    html, body, #root, main, .container {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+
+    /* Prevent oversized background elements or absolute elements from causing scroll */
+    img, .bg-cover, .bg-center {
+      max-width: 100vw !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+    }
+
+    /* Defensive rule for any transformed elements that might overflow */
+    * {
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* Also ensure main doesn't allow horizontal scroll by default */
+main {
+  overflow-x: hidden;
+}
