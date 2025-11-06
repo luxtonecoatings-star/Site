@@ -53,11 +53,11 @@ function ContactCTA() {
               <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="tel:+15551234567"
+              href="tel:+919063666312"
               className="group bg-brand-dark hover:bg-black border-2 border-gold/20 hover:border-gold/40 px-10 py-5 rounded-xl text-xl font-bold text-gold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl backdrop-blur-sm flex items-center space-x-3"
             >
               <Phone className="w-6 h-6" />
-              <span>+1 (555) 123-4567</span>
+              <span>+91 9063666312</span>
             </a>
           </div>
 

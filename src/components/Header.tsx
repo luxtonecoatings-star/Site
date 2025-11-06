@@ -1,41 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Paintbrush, Menu, X, Instagram, Facebook, Phone, Mail, MapPin } from 'lucide-react';
+import { Paintbrush, Menu, X, Instagram, Facebook, Phone, Mail } from 'lucide-react';
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const isMobile = window.innerWidth < 640;
-        const scrolled = window.scrollY > (isMobile ? 5 : 20);
-        
-        // Add a small delay for mobile to ensure smooth transition
-        if (isMobile) {
-          requestAnimationFrame(() => {
-            setIsScrolled(scrolled);
-          });
-        } else {
-          setIsScrolled(scrolled);
-        }
-      }
-    };
-
-    // Set initial state
-    handleScroll();
-
-    // Handle scroll events
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Handle resize events to update mobile detection
-    window.addEventListener('resize', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
 
   // Disable body scroll when menu is open
   useEffect(() => {
@@ -57,8 +24,8 @@ function Header() {
   ];
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/luxtonecoatings' },
-    { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/luxtonecoatings' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/luxtonecoatings?igsh=eW8xeTJlaTF2OXBk' },
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61583284447450' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -73,11 +40,7 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed w-full top-0 z-50 transition-colors duration-200 ease-in-out ${
-          isScrolled 
-            ? 'bg-black/80 backdrop-blur-md shadow-md py-4 sm:py-6' 
-            : 'bg-gradient-to-b from-black/50 to-transparent sm:bg-transparent py-6 sm:py-12'
-        }`}
+        className="fixed w-full top-0 z-50 -py-3 sm:-py-2 bg-black/30 backdrop-blur-sm"
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
@@ -86,10 +49,17 @@ function Header() {
               className="flex items-center space-x-3 cursor-pointer"
               onClick={() => handleNavClick('home')}
             >
-              <div className="rounded-lg bg-[#2B1B12] flex items-center justify-center p-3">
-                <Paintbrush className="w-8 h-8 text-gold" />
+              <div>
+                              <div>
+                <img 
+                  src="/luxlogo.svg" 
+                  alt="logo" 
+                  width="150" 
+                  height="150"
+                />
               </div>
-              <span className="text-3xl font-heading text-gold tracking-wide">Luxtone Coatings</span>
+
+              </div>
             </div>
 
             {/* Menu Button */}
@@ -167,11 +137,11 @@ function Header() {
               <h3 className="text-gold/80 text-sm uppercase tracking-wider mb-4">Contact Us</h3>
               <div className="space-y-4">
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+919063666312"
                   className="flex items-center space-x-3 text-white hover:text-gold transition-colors"
                 >
-                  <Phone className="w-5 h-5" />
-                  <span>+1 (555) 123-4567</span>
+                  <Phone className="w-5 h-5 text-gold" />
+                  <span>+91 9063666312</span>
                 </a>
                 <a
                   href="mailto:contact@luxtone.com"
@@ -180,10 +150,22 @@ function Header() {
                   <Mail className="w-5 h-5" />
                   <span>contact@luxtone.com</span>
                 </a>
-                <div className="flex items-start space-x-3 text-white">
-                  <MapPin className="w-5 h-5 mt-1" />
-                  <span>123 Luxury Avenue<br />Suite 456<br />New York, NY 10001</span>
-                </div>
+                <div className="rounded-xl overflow-hidden border border-gold/10 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+                <iframe
+                  src={
+                    'https://www.google.com/maps?q=' +
+                    encodeURIComponent(
+                      'WorkFlo Hitex Bizness Square 4th Floor, Unit No 405-411, Bizness Square, HNO.1-98/3/5/23 TO 27, Jubilee Enclave, SY Nos 66&67, Madhapur, Serlingampally Mandal, RR DIST, Hyderabad, Telangana- 500081'
+                    ) + '&output=embed'
+                  }
+                  width="100%"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
               </div>
             </div>
           </div>

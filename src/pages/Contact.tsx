@@ -14,22 +14,38 @@ function Contact() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
+  // WhatsApp number provided by user. Assumption: Indian number, prefix with 91 for international format.
+  const WHATSAPP_NUMBER = '919063666312';
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitMessage('');
     setIsError(false);
 
+    // Build a prefilled message for WhatsApp with the submitted fields
+    const message = `New inquiry from website:\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`;
+    const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
     try {
-      if (supabase) {
-        const { error } = await supabase.from('contact_submissions').insert([formData]);
-        if (error) throw error;
+      // Open WhatsApp chat in new tab/window (user-triggered click, should not be blocked)
+      if (typeof window !== 'undefined') {
+        window.open(waHref, '_blank');
       }
 
-      setSubmitMessage('Thank you! We will contact you shortly.');
+      // Also insert into Supabase in background if available
+      if (supabase) {
+        const { error } = await supabase.from('contact_submissions').insert([formData]);
+        if (error) {
+          console.error('Supabase insert error:', error);
+          // don't throw — we've already opened WhatsApp
+        }
+      }
+
+      setSubmitMessage('Thank you! We have opened WhatsApp so you can message us directly.');
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error handling form submit:', error);
       setIsError(true);
       setSubmitMessage('Sorry, there was an error submitting your form. Please try again or contact us directly.');
     } finally {
@@ -76,7 +92,7 @@ function Contact() {
                   </div>
                   <div>
                     <h3 className="font-heading text-lg text-gold mb-1">Phone</h3>
-                    <p className="text-gray-300">+1 (555) 123-4567</p>
+                    <p className="text-gray-300">+91 9063666312</p>
                   </div>
                 </div>
 
@@ -99,7 +115,10 @@ function Contact() {
                   <div>
                     <h3 className="font-heading text-lg text-gold mb-1">Address</h3>
                     <p className="text-gray-300">
-                      123 Paint Street, Color District<br />New York, NY 10001
+                      WorkFlo Hitex Bizness Square
+4th Floor, Unit No 405-411, Bizness Square,HNO.1-98/3/5/23 TO 27,
+Jubilee Enclave, SY Nos 66&67, Madhapur, Serlingampally Mandal, RR
+DIST, Hyderabad, Telangana- 500081
                     </p>
                   </div>
                 </div>
@@ -123,7 +142,12 @@ function Contact() {
               {/* Map */}
               <div className="rounded-xl overflow-hidden border border-gold/10 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1234567890"
+                  src={
+                    'https://www.google.com/maps?q=' +
+                    encodeURIComponent(
+                      'WorkFlo Hitex Bizness Square 4th Floor, Unit No 405-411, Bizness Square, HNO.1-98/3/5/23 TO 27, Jubilee Enclave, SY Nos 66&67, Madhapur, Serlingampally Mandal, RR DIST, Hyderabad, Telangana- 500081'
+                    ) + '&output=embed'
+                  }
                   width="100%"
                   height="320"
                   style={{ border: 0 }}

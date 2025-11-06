@@ -1,8 +1,10 @@
-// NOTE: I used a placeholder phone number. Replace with your real number in international format (no + or dashes), e.g. '15551234567'
-const WHATSAPP_NUMBER = '15551234567';
+// NOTE: incoming number provided by user: 9063666312
+// Assumption: number is an Indian mobile number. WhatsApp requires international format without + or dashes.
+// We'll prefix with country code 91. If you want a different country code, update this value.
+const WHATSAPP_NUMBER = '919063666312';
 
 function WhatsAppButton() {
-  const message = `Hi Luxtone coating, I would like to enquire about your services.`;
+  const message = `Hi Luxtone Coatings, I would like to enquire about your services.`;
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
   return (
