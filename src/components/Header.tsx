@@ -40,7 +40,7 @@ function Header() {
   return (
     <>
       <header
-        className="fixed w-full top-0 z-50 -py-3 sm:-py-2 bg-black/30 backdrop-blur-sm"
+        className="fixed w-full top-0 z-50 -py-3 sm:-py-4 bg-black/30 backdrop-blur-sm"
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
