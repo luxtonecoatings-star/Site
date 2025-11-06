@@ -12,10 +12,14 @@ function Footer() {
     <footer className="bg-brand-dark text-white py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="p-2 rounded bg-[#2B1B12]">
-            <Paintbrush className="w-6 h-6 text-gold" />
+          <div>
+            <img 
+                  src="/luxlogo.svg" 
+                  alt="logo" 
+                  width="150" 
+                  height="150"
+                />
           </div>
-          <span className="text-xl font-heading text-gold">Luxtone Coatings</span>
         </div>
 
         <p className="text-gray-400 mb-6">
@@ -34,7 +38,7 @@ function Footer() {
           ))}
         </div>
 
-        <div className="text-sm text-gray-500">© {new Date().getFullYear()} Luxtone Coatings. All rights reserved.</div>
+        <div className="text-sm text-gray-500">© {new Date().getFullYear()} Luxtone Coatings. All rights reserved. Made with <a href="https://staffarc.in" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">staffarc</a>.</div>
       </div>
     </footer>
   );

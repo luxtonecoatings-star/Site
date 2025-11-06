@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import { useInView } from '../../lib/useInView';
+import ShufflingCubes from './ShufflingCubes';
 
 function PaintsTechniques() {
   const techniques = [
@@ -34,7 +35,8 @@ function PaintsTechniques() {
   sectionRefs.forEach(ref => useInView(ref, { threshold: 0.1, once: true, rootMargin: "-100px" }));
 
   return (
-    <section className="py-32 bg-black">
+    <section className="py-32 bg-black relative overflow-hidden">
+      <ShufflingCubes />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div ref={titleRef} className="text-center mb-24 glide-up">
           <h2 className="text-5xl md:text-6xl font-heading font-bold mb-6 text-white">

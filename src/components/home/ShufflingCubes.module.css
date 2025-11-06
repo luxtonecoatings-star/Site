@@ -1,0 +1,157 @@
+.cubeContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Container for glowing white cubes */
+.glowContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.55;
+  pointer-events: none;
+  mix-blend-mode: screen; /* make glow blend nicely */
+}
+
+.cube {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  transform-style: preserve-3d;
+  animation-name: shuffle;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes shuffle {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(0);
+  }
+  25% {
+    transform: rotateX(90deg) rotateY(45deg) translateZ(100px);
+  }
+  50% {
+    transform: rotateX(180deg) rotateY(90deg) translateZ(0);
+  }
+  75% {
+    transform: rotateX(270deg) rotateY(135deg) translateZ(-100px);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(180deg) translateZ(0);
+  }
+}
+
+.cubeFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-origin: center;
+  transition: all 0.5s ease-out;
+}
+
+.glowCubeFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-origin: center;
+  transition: all 0.25s linear;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 18px rgba(255,255,255,0.95), 0 0 48px rgba(255,255,255,0.6);
+}
+
+/* Gold face with glow */
+.goldCubeFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-origin: center;
+  transition: all 0.25s linear;
+  background: rgba(212, 175, 55, 0.38);
+  box-shadow: 0 0 12px rgba(212,175,55,0.45), 0 0 28px rgba(218,165,32,0.18);
+}
+
+.front { transform: translateZ(30px); }
+.back { transform: translateZ(-30px) rotateY(180deg); }
+.right { transform: translateX(30px) rotateY(90deg); }
+.left { transform: translateX(-30px) rotateY(-90deg); }
+.top { transform: translateY(-30px) rotateX(90deg); }
+.bottom { transform: translateY(30px) rotateX(-90deg); }
+
+/* Golden palette with different opacities */
+.cube:nth-child(3n) .cubeFace {
+  background: rgba(212, 175, 55, 0.3); /* Gold */
+}
+.cube:nth-child(3n+1) .cubeFace {
+  background: rgba(184, 134, 11, 0.3); /* Dark Golden */
+}
+.cube:nth-child(3n+2) .cubeFace {
+  background: rgba(218, 165, 32, 0.3); /* Golden Yellow */
+}
+
+/* Unique animation delay and position for each cube */
+.cube:nth-child(1) { top: 6%; left: 6%; }
+.cube:nth-child(2) { top: 12%; left: 22%; }
+.cube:nth-child(3) { top: 8%; left: 40%; }
+.cube:nth-child(4) { top: 28%; left: 10%; }
+.cube:nth-child(5) { top: 24%; left: 36%; }
+.cube:nth-child(6) { top: 20%; left: 66%; }
+.cube:nth-child(7) { top: 46%; left: 18%; }
+.cube:nth-child(8) { top: 42%; left: 40%; }
+.cube:nth-child(9) { top: 38%; left: 72%; }
+.cube:nth-child(10) { top: 62%; left: 30%; }
+.cube:nth-child(11) { top: 56%; left: 54%; }
+.cube:nth-child(12) { top: 68%; left: 80%; }
+.cube:nth-child(13) { top: 10%; left: 80%; }
+.cube:nth-child(14) { top: 2%; left: 58%; }
+.cube:nth-child(15) { top: 30%; left: 82%; }
+.cube:nth-child(16) { top: 72%; left: 8%; }
+.cube:nth-child(17) { top: 78%; left: 26%; }
+.cube:nth-child(18) { top: 84%; left: 48%; }
+.cube:nth-child(19) { top: 58%; left: 72%; }
+.cube:nth-child(20) { top: 48%; left: 88%; }
+.cube:nth-child(21) { top: 32%; left: 6%; }
+.cube:nth-child(22) { top: 14%; left: 12%; }
+.cube:nth-child(23) { top: 86%; left: 68%; }
+.cube:nth-child(24) { top: 76%; left: 46%; }
+
+/* Scale animation on hover */
+.cubeContainer:hover .cube {
+  animation-play-state: paused;
+}
+
+/* Pause glow cubes on hover as well */
+.glowContainer:hover .glowCube {
+  animation-play-state: paused;
+}
+
+/* Positions/delays for glowing white cubes (24) */
+.glowContainer .glowCube:nth-child(1) { top: 4%; left: 8%; animation-delay: -0s; }
+.glowContainer .glowCube:nth-child(2) { top: 10%; left: 24%; animation-delay: -0.4s; }
+.glowContainer .glowCube:nth-child(3) { top: 6%; left: 44%; animation-delay: -0.8s; }
+.glowContainer .glowCube:nth-child(4) { top: 26%; left: 12%; animation-delay: -1.2s; }
+.glowContainer .glowCube:nth-child(5) { top: 22%; left: 38%; animation-delay: -1.6s; }
+.glowContainer .glowCube:nth-child(6) { top: 18%; left: 68%; animation-delay: -2s; }
+.glowContainer .glowCube:nth-child(7) { top: 44%; left: 16%; animation-delay: -2.4s; }
+.glowContainer .glowCube:nth-child(8) { top: 40%; left: 38%; animation-delay: -2.8s; }
+.glowContainer .glowCube:nth-child(9) { top: 36%; left: 70%; animation-delay: -3.2s; }
+.glowContainer .glowCube:nth-child(10) { top: 60%; left: 28%; animation-delay: -3.6s; }
+.glowContainer .glowCube:nth-child(11) { top: 54%; left: 52%; animation-delay: -4s; }
+.glowContainer .glowCube:nth-child(12) { top: 66%; left: 78%; animation-delay: -4.4s; }
+.glowContainer .glowCube:nth-child(13) { top: 8%; left: 78%; animation-delay: -4.8s; }
+.glowContainer .glowCube:nth-child(14) { top: 0%; left: 56%; animation-delay: -5.2s; }
+.glowContainer .glowCube:nth-child(15) { top: 28%; left: 80%; animation-delay: -5.6s; }
+.glowContainer .glowCube:nth-child(16) { top: 70%; left: 6%; animation-delay: -6s; }
+.glowContainer .glowCube:nth-child(17) { top: 76%; left: 24%; animation-delay: -6.4s; }
+.glowContainer .glowCube:nth-child(18) { top: 82%; left: 46%; animation-delay: -6.8s; }
+.glowContainer .glowCube:nth-child(19) { top: 56%; left: 70%; animation-delay: -7.2s; }
+.glowContainer .glowCube:nth-child(20) { top: 46%; left: 86%; animation-delay: -7.6s; }
+.glowContainer .glowCube:nth-child(21) { top: 30%; left: 4%; animation-delay: -8s; }
+.glowContainer .glowCube:nth-child(22) { top: 12%; left: 10%; animation-delay: -8.4s; }
+.glowContainer .glowCube:nth-child(23) { top: 84%; left: 66%; animation-delay: -8.8s; }
+.glowContainer .glowCube:nth-child(24) { top: 74%; left: 44%; animation-delay: -9.2s; }
