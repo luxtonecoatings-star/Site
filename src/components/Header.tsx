@@ -24,8 +24,16 @@ function Header() {
   ];
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/luxtonecoatings?igsh=eW8xeTJlaTF2OXBk' },
-    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61583284447450' },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      href: 'https://www.instagram.com/luxtonecoatings?igsh=eW8xeTJlaTF2OXBk',
+    },
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      href: 'https://www.facebook.com/profile.php?id=61583284447450',
+    },
   ];
 
   const handleNavClick = (href: string) => {
@@ -40,7 +48,7 @@ function Header() {
   return (
     <>
       <header
-        className="fixed w-full top-0 z-50 -py-3 sm:-py-4 bg-black/30 backdrop-blur-sm"
+        className="fixed w-full top-0 z-50 bg-black/30 backdrop-blur-sm py-2 sm:py-4 transition-all"
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
@@ -49,25 +57,19 @@ function Header() {
               className="flex items-center space-x-3 cursor-pointer"
               onClick={() => handleNavClick('home')}
             >
-              <div>
-                              <div>
-                <img 
-                  src="/luxlogo.svg" 
-                  alt="logo" 
-                  width="100" 
-                  height="100"
-                />
-              </div>
-
-              </div>
+              <img
+                src="/luxlogo.svg"
+                alt="LuxTone Logo"
+                className="w-16 h-16 sm:w-28 sm:h-28 object-contain transition-all"
+              />
             </div>
 
             {/* Menu Button */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="w-12 h-12 rounded-full bg-brand-dark/80 border border-gold/20 flex items-center justify-center hover:bg-brand-dark hover:border-gold/40 transition-all"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-dark/80 border border-gold/20 flex items-center justify-center hover:bg-brand-dark hover:border-gold/40 transition-all"
             >
-              <Menu className="w-6 h-6 text-gold" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-gold" />
             </button>
           </div>
         </nav>
@@ -85,13 +87,13 @@ function Header() {
           onClick={() => setIsMenuOpen(false)}
         />
 
-        {/* Menu panel */}
+        {/* Menu Panel */}
         <div
           className={`absolute top-0 right-0 w-full sm:w-[400px] h-full bg-brand-dark border-l border-gold/20 transform transition-transform duration-500 ease-out ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          {/* Close button */}
+          {/* Close Button */}
           <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute top-8 right-8 w-10 h-10 rounded-full bg-brand-dark border border-gold/20 flex items-center justify-center hover:border-gold/40 transition-all"
@@ -116,7 +118,9 @@ function Header() {
 
             {/* Social Links */}
             <div className="mb-12">
-              <h3 className="text-gold/80 text-sm uppercase tracking-wider mb-4">Follow Us</h3>
+              <h3 className="text-gold/80 text-sm uppercase tracking-wider mb-4">
+                Follow Us
+              </h3>
               <div className="flex gap-4">
                 {socialLinks.map((link) => (
                   <a
@@ -134,7 +138,9 @@ function Header() {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-gold/80 text-sm uppercase tracking-wider mb-4">Contact Us</h3>
+              <h3 className="text-gold/80 text-sm uppercase tracking-wider mb-4">
+                Contact Us
+              </h3>
               <div className="space-y-4">
                 <a
                   href="tel:+919063666312"
@@ -147,25 +153,27 @@ function Header() {
                   href="mailto:contact@luxtone.com"
                   className="flex items-center space-x-3 text-white hover:text-gold transition-colors"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-5 h-5 text-gold" />
                   <span>contact@luxtone.com</span>
                 </a>
+
+                {/* Google Map */}
                 <div className="rounded-xl overflow-hidden border border-gold/10 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
-                <iframe
-                  src={
-                    'https://www.google.com/maps?q=' +
-                    encodeURIComponent(
-                      'WorkFlo Hitex Bizness Square 4th Floor, Unit No 405-411, Bizness Square, HNO.1-98/3/5/23 TO 27, Jubilee Enclave, SY Nos 66&67, Madhapur, Serlingampally Mandal, RR DIST, Hyderabad, Telangana- 500081'
-                    ) + '&output=embed'
-                  }
-                  width="100%"
-                  height="320"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+                  <iframe
+                    src={
+                      'https://www.google.com/maps?q=' +
+                      encodeURIComponent(
+                        'WorkFlo Hitex Bizness Square 4th Floor, Unit No 405-411, Bizness Square, HNO.1-98/3/5/23 TO 27, Jubilee Enclave, SY Nos 66&67, Madhapur, Serlingampally Mandal, RR DIST, Hyderabad, Telangana- 500081'
+                      ) + '&output=embed'
+                    }
+                    width="100%"
+                    height="320"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -176,4 +184,3 @@ function Header() {
 }
 
 export default Header;
-
